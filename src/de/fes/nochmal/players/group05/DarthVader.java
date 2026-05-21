@@ -22,12 +22,11 @@ public class DarthVader extends AbstractComputerPlayer {
 	@Override
 	public void initialize(Sheet sheet, Log log) {
 		//Nichts zu tun
-		
 	}
 
 	@Override
 	public PlayerChoice playTurn(Sheet sheet, int roundNumber, boolean firstPlayerInRound, Dice dice, Log log) {
-		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("not implementet jet");
+		
 	}
 }
