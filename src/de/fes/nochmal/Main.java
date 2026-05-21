@@ -9,7 +9,6 @@ import de.fes.nochmal.util.log.SystemOutLogAppender;
 import de.fes.nochmal.Configuration; 
 
 public class Main {
-    public static final String ProgramNameAndVersion = "Noch mal! Arena 0.5";
     
     public static void main(String[] args) {
         Log log = new BasicLog(SystemOutLogAppender.Instance);
