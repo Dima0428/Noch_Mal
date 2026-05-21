@@ -28,38 +28,36 @@ public class DarthVader extends AbstractComputerPlayer {
 
 	@Override
 	public PlayerChoice playTurn(Sheet sheet, int roundNumber, boolean firstPlayerInRound, Dice dice, Log log) {
-		// обьявляем squares чтобы получать информацию о игровом поле
+		// squares deklarieren, um Informationen über das Spielfeld zu erhalten
 		Square[][] squares = sheet.getSquares();
-		
-		// обьяляем возможные ходы 
+		// Mögliche Züge ermitteln
 		PlayerChoice[] possiblePlayerChoices = PlayerUtils.getPossiblePlayerChoices(sheet, dice, log);
 		
 		// Habe ich schon A erfüllt?
 		
-		// сначало думаем что да
+		// Zuerst nehmen wir an, dass es erfüllt ist
 		boolean isAFilled = true;
 		
-		// проверяем заполнели ли мы А 
+		// Überprüfen, ob Spalte A vollständig ausgefüllt ist
 		for (int i = 0; i < sheet.getNumberOfRows(); i++) {
+		// Wenn eines der Quadrate nicht markiert ist, ist A noch nicht erfüllt
 			if (!squares[0][i].isMarked()) {
 				isAFilled = false; 
 				break;
 			}
 		}
 		
+		// Falls Ja: O erfüllen
 		if (isAFilled) {
 			int lastChoiceIndex = possiblePlayerChoices.length - 1;
-			
+		// Den ersten verfügbaren Zug ganz rechts wählen
 			return possiblePlayerChoices[lastChoiceIndex];
 		}
+		// Falls Nein: A erfüllen
 		else {
+		// Den ersten verfügbaren Zug ganz links (Richtung A) wählen
 			return possiblePlayerChoices[0];
 		}
-		
-		
-		return possiblePlayerChoices[0];
-		
-		//System.out.println(dice);
 
 	}
 }
