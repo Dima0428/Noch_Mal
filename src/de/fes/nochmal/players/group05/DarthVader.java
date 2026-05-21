@@ -4,6 +4,7 @@ import de.fes.nochmal.game.PlayerChoice;
 import de.fes.nochmal.model.Dice;
 import de.fes.nochmal.model.Sheet;
 import de.fes.nochmal.players.AbstractComputerPlayer;
+import de.fes.nochmal.players.PlayerUtils;
 import de.fes.nochmal.util.log.Log;
 
 public class DarthVader extends AbstractComputerPlayer {
@@ -26,7 +27,14 @@ public class DarthVader extends AbstractComputerPlayer {
 
 	@Override
 	public PlayerChoice playTurn(Sheet sheet, int roundNumber, boolean firstPlayerInRound, Dice dice, Log log) {
-		throw new RuntimeException("not implementet jet");
+		boolean pass = true;
+		int color = 1;
+		int number = 1; 
+		int[] cord = {}; 
 		
+		
+		//System.out.println(dice);
+		
+		return new PlayerChoice(pass, null, null, null);
 	}
 }
