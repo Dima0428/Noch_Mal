@@ -7,6 +7,7 @@ import de.fes.nochmal.players.AbstractComputerPlayer;
 import de.fes.nochmal.players.PlayerUtils;
 import de.fes.nochmal.util.log.Log;
 
+
 public class DarthVader extends AbstractComputerPlayer {
 
 	public static final String Id = "DarthVader";
@@ -27,14 +28,9 @@ public class DarthVader extends AbstractComputerPlayer {
 
 	@Override
 	public PlayerChoice playTurn(Sheet sheet, int roundNumber, boolean firstPlayerInRound, Dice dice, Log log) {
-		boolean pass = true;
-		int color = 1;
-		int number = 1; 
-		int[] cord = {}; 
 		
-		
-		//System.out.println(dice);
-		
-		return new PlayerChoice(pass, null, null, null);
+		PlayerChoice[] possiblePlayerChoices = PlayerUtils.getPossiblePlayerChoices(sheet, dice, log);
+
+		return possiblePlayerChoices[0];
 	}
 }
