@@ -41,8 +41,6 @@ public class DarthVader extends AbstractComputerPlayer {
 			}
 		}
 		
-		System.out.println(roundNumber + " " + isAFilled);
-		
 		
 		if (isAFilled == false) {
 			System.out.println("A");
@@ -63,11 +61,9 @@ public class DarthVader extends AbstractComputerPlayer {
 		if (isOFilled == false) {
 			int lastChoiceIndex = possiblePlayerChoices.length - 1;
 			
-			System.out.println("O");
 			return possiblePlayerChoices[lastChoiceIndex];
 		}
 		else {
-			System.out.println("Nein");
 			return possiblePlayerChoices[0];
 		}
 		
