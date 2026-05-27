@@ -40,15 +40,17 @@ public class DarthVader extends AbstractComputerPlayer {
 		}
 		
 		
-		// Базовый приоритет: от центра к краям
+		// Basispriorität: von der Mitte zu den Rändern
 		//int[] columnPriority = {7, 8, 6, 9, 5, 10, 4, 11, 3, 12, 2, 13, 1, 14, 0};
 		int[] columnPriority = {7, 6, 8, 5, 9, 4, 10, 3, 11, 2, 12, 1, 13, 0, 14};
 		
-		// Если мы в фазе экспансии (до 10 раунда) и один из краев уже взят, меняем веса колонок
+		// Wenn wir uns in der Expansionsphase befinden (bis Runde 10)
+		// und eine der Seiten bereits erreicht wurde,
+		// ändern wir die Gewichtung der Spalten
 		if (roundNumber <= 10) {
 			
-			boolean leftEdgeReached = false;  // Достигли колонки 0 (A)?
-			boolean rightEdgeReached = false; // Достигли колонки 14 (O)?
+			boolean leftEdgeReached = false;  // Spalte 0 (A) erreicht?
+			boolean rightEdgeReached = false; // Spalte 14 (O) erreicht?
 			
 			Square[] markedSquares = PlayerUtils.getMarkedSquares(sheet);
 			for (Square square : markedSquares) {
@@ -65,10 +67,14 @@ public class DarthVader extends AbstractComputerPlayer {
 			System.out.println(rightEdgeReached + " " + leftEdgeReached);
 			
 			if (leftEdgeReached && !rightEdgeReached) {
-				// Лево уже захвачено, искусственно обесцениваем левую половину, чтобы бот шел вправо
+				// Linke Seite bereits erreicht,
+				// linke Hälfte künstlich abwerten,
+				// damit der Bot nach rechts expandiert
 				columnPriority = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 			} else if (rightEdgeReached && !leftEdgeReached) {
-				// Право захвачено, обесцениваем правую половину, разворачиваем бота налево
+				// Rechte Seite bereits erreicht,
+				// rechte Hälfte abwerten,
+				// damit der Bot nach links expandiert
 				columnPriority = new int[]{14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 			}
 		}
@@ -84,18 +90,18 @@ public class DarthVader extends AbstractComputerPlayer {
 				continue;
 			}
 
-			// ПРОВЕРКА НА ДЖОКЕРЫ
+			// ÜBERPRÜFUNG AUF JOKER
 			boolean currentIsJoker = false;
 			if ((choice.getColorDie() != null && choice.getColorDie().isJoker()) || 
 				(choice.getNumberDie() != null && choice.getNumberDie().isJoker())) {
 				currentIsJoker = true;
 			}
 
-			// СЧИТАЕМ КОЛИЧЕСТВО КВАДРАТОВ
+			// ANZAHL DER FELDER BERECHNEN
 			Square[] choiceSquares = choice.getSquaresToMark();
 			int currentSquaresCount = (choiceSquares != null) ? choiceSquares.length : 0;
 
-			// ОПРЕДЕЛЯЕМ ЦЕННОСТЬ КОЛОНКИ
+			// WERTIGKEIT DER SPALTE BESTIMMEN
 			int currentColumnPriority = -1;
 			if (choiceSquares != null && choiceSquares.length > 0) {
 				for (Square square : choiceSquares) {
@@ -120,7 +126,7 @@ public class DarthVader extends AbstractComputerPlayer {
 				continue;
 			}
 
-			// ПРАВИЛО 1: Избегаем джокеров
+			// REGEL 1: Joker vermeiden
 			if (!currentIsJoker && bestIsJoker) {
 				bestChoice = choice;
 				bestIsJoker = currentIsJoker;
@@ -133,7 +139,7 @@ public class DarthVader extends AbstractComputerPlayer {
 			}
 			
 			if (roundNumber <= 10) {
-				// --- РЕЖИМ ДО 10 РАУНДА ---
+				// --- MODUS BIS RUNDE 10 ---
 				if (currentColumnPriority > bestColumnPriority) {
 					bestChoice = choice;
 					bestColumnPriority = currentColumnPriority;
@@ -146,7 +152,7 @@ public class DarthVader extends AbstractComputerPlayer {
 					}
 				}
 			} else {
-				// --- РЕЖИМ ПОСЛЕ 10 РАУНДА ---
+				// --- MODUS NACH RUNDE 10 ---
 				if (currentSquaresCount > bestSquaresCount) {
 					bestChoice = choice;
 					bestSquaresCount = currentSquaresCount;
