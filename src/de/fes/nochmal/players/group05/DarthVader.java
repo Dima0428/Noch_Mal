@@ -38,7 +38,7 @@ public class DarthVader extends AbstractComputerPlayer {
 		
 		System.out.println("Dise: " + dice);
 		
-		ColorDie[] colorDies = dice.getColorDies();   // Здесь будут твои Grün, Grün, Gelb
+		ColorDie[] colorDies = dice.getColorDies();
 	    NumberDie[] numberDies = dice.getNumberDies();
 		
 		for (int i = 0; i < sheet.getNumberOfRows(); i++) {
@@ -72,6 +72,10 @@ public class DarthVader extends AbstractComputerPlayer {
 		else {
 			return possiblePlayerChoices[0];
 		}
+		
+		/*
+		 * if (dice.containsNumberDie(NumberDie.Four)) {}
+		 */
 
 	}
 }
