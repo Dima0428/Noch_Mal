@@ -1,7 +1,9 @@
 package de.fes.nochmal.players.group05;
 
 import de.fes.nochmal.game.PlayerChoice;
+import de.fes.nochmal.model.ColorDie;
 import de.fes.nochmal.model.Dice;
+import de.fes.nochmal.model.NumberDie;
 import de.fes.nochmal.model.Sheet;
 import de.fes.nochmal.players.AbstractComputerPlayer;
 import de.fes.nochmal.players.PlayerUtils;
@@ -34,6 +36,11 @@ public class DarthVader extends AbstractComputerPlayer {
 		
 		boolean isAFilled = true;
 		
+		System.out.println("Dise: " + dice);
+		
+		ColorDie[] colorDies = dice.getColorDies();   // Здесь будут твои Grün, Grün, Gelb
+	    NumberDie[] numberDies = dice.getNumberDies();
+		
 		for (int i = 0; i < sheet.getNumberOfRows(); i++) {
 			if (!squares[0][i].isMarked()) {
 				isAFilled = false; 
@@ -43,7 +50,6 @@ public class DarthVader extends AbstractComputerPlayer {
 		
 		
 		if (isAFilled == false) {
-			System.out.println("A");
 			return possiblePlayerChoices[0];
 		}
 		
@@ -66,8 +72,6 @@ public class DarthVader extends AbstractComputerPlayer {
 		else {
 			return possiblePlayerChoices[0];
 		}
-		
-		//System.out.println(dice);
 
 	}
 }
