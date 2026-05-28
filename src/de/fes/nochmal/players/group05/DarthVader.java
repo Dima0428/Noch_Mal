@@ -12,7 +12,7 @@ import de.fes.nochmal.model.Square;
 
 public class DarthVader extends AbstractComputerPlayer {
 
-	public static final String Id = "DarthVader";
+	public static final String Id = "_mit10_DarthVader";
 	
 	public DarthVader() {
 		super(Id, true);
@@ -39,6 +39,7 @@ public class DarthVader extends AbstractComputerPlayer {
 			return possiblePlayerChoices[0];
 		}
 		
+		System.out.println(sheet);
 		
 		// Basispriorität: von der Mitte zu den Rändern
 		//int[] columnPriority = {7, 8, 6, 9, 5, 10, 4, 11, 3, 12, 2, 13, 1, 14, 0};
@@ -64,7 +65,7 @@ public class DarthVader extends AbstractComputerPlayer {
 				}
 			}
 			
-			System.out.println(rightEdgeReached + " " + leftEdgeReached);
+			
 			
 			if (leftEdgeReached && !rightEdgeReached) {
 				// Linke Seite bereits erreicht,
